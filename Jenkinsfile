@@ -12,7 +12,7 @@ pipeline {
         
         stage('Checkout'){
            steps {
-                git credentialsId: 'JENKIN_GITHUB_TOKEN', 
+                git credentialsId: 'JENKINS_GITHUB_SECRET', 
                 url: 'https://github.com/Cloudlead20/jenkinsdocker',
                 branch: 'master'
            }
