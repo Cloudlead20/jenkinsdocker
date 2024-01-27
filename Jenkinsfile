@@ -5,6 +5,8 @@ pipeline {
     environment {
         IMAGE_TAG = "${BUILD_NUMBER}"
         DOCKERHUB_CREDENTIALS = credentials('DOCKER_HUB')
+        DOCKER_CONTAINER = mycontainer
+        DOCKER_IMAGE =  muthuarumugam/testapp
 
     }
     
@@ -23,7 +25,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Buid Docker Image'
-                    docker build -t muthuarumugam/testapp:${BUILD_NUMBER} .
+                    docker build -t ${DOCKER_IMAGE}:${BUILD_NUMBER} .
                     '''
                 }
             }
@@ -47,7 +49,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Push'
-                    docker push muthuarumugam/testapp:${BUILD_NUMBER}
+                    docker push ${DOCKER_IMAGE}:${BUILD_NUMBER}
                     '''
                 
                 }
@@ -60,8 +62,9 @@ pipeline {
                 script{
                     sh '''
                     echo 'Deploy'
-                    docker pull muthuarumugam/testapp:${BUILD_NUMBER}
-                    docker run -d --name testapp -p 5000:5000 muthuarumugam/testapp:${BUILD_NUMBER}
+                    docker pull ${DOCKER_IMAGE}:${BUILD_NUMBER}
+                    docker stop $DOCKER_CONTAINER || true && docker rm $DOCKER_CONTAINER || true"
+                    docker run -d --name $DOCKER_CONTAINER -p 5002:5000 muthuarumugam/testapp:${BUILD_NUMBER}
                     '''
                 
                 }
