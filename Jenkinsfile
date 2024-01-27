@@ -53,6 +53,20 @@ pipeline {
                 }
             }
         }
+
+
+        stage('deploy'){
+            steps{
+                script{
+                    sh '''
+                    echo 'Deploy'
+                    docker pull muthuarumugam/testapp:${BUILD_NUMBER}
+                    docker run -d -name testapp -p 5000:5000 muthuarumugam/testapp:${BUILD_NUMBER}
+                    '''
+                
+                }
+            }
+        }
         
  
     }  
