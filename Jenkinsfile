@@ -63,7 +63,7 @@ pipeline {
                     sh '''
                     echo 'Deploy'
                     docker pull ${DOCKER_IMAGE}:${BUILD_NUMBER}
-                    docker stop $DOCKER_CONTAINER || true && docker rm $DOCKER_CONTAINER || true"
+                    docker stop $DOCKER_CONTAINER || true && docker rm $DOCKER_CONTAINER || true
                     docker run -d --name $DOCKER_CONTAINER -p 5002:5000 muthuarumugam/testapp:${BUILD_NUMBER}
                     '''
                 
