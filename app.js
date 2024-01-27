@@ -2,7 +2,7 @@ const http = require('http');
 
 const server = http.createServer((req, res) => {
     res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('test, Node.js!\n');
+    res.end('docker, Node.js!\n');
 });
 
 const PORT = 5000;
