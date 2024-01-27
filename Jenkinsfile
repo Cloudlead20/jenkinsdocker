@@ -23,7 +23,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Buid Docker Image'
-                    docker build -t muthuarumugam/test-jenkinsdocker:${BUILD_NUMBER} .
+                    docker build -t muthuarumugam/testapp:${BUILD_NUMBER} .
                     '''
                 }
             }
@@ -47,7 +47,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Push'
-                    docker push muthuarumugam/test-jenkinsdocker:${BUILD_NUMBER}
+                    docker push muthuarumugam/testapp:${BUILD_NUMBER}
                     '''
                 
                 }
