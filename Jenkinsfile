@@ -6,7 +6,7 @@ pipeline {
         IMAGE_TAG = "${BUILD_NUMBER}"
         DOCKERHUB_CREDENTIALS = credentials('DOCKER_HUB')
         DOCKER_CONTAINER = "mycontainer"
-        DOCKER_IMAGE =  "muthuarumugam/testapp"
+        DOCKER_IMAGE =  "muthuarumugam/testapp2"
 
     }
     
